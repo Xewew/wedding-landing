@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свадьба Александра и Татьяны</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-bg"></div>
+        <div class="welcome-content">
+            <h1 class="welcome-title">Вы приглашены на свадьбу</h1>
+            <p class="welcome-hint" id="welcomeHint">Коснитесь для ознакомления!</p>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <div class="popup-icon">⚠️</div>
+            <h2 class="popup-title">Уважаемый гость!</h2>
+            <p class="popup-text">Просим прощения за возможные трудности, но перед тем как заполнить анкету, огромная просьба — включите <strong>VPN</strong>.</p>
+            <p class="popup-subtext">Это необходимо для корректной работы формы анкеты.</p>
+            <button class="popup-btn" id="popupBtn">Понятно, продолжить</button>
+        </div>
+    </div>
+
+    <main class="main-content" id="mainContent">
+        <section class="hero-section">
+            <div class="hero-photo-container">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80" alt="Жених и невеста" class="hero-photo">
+                <!-- PHOTO_COUPLE -->
+            </div>
+            <h1 class="hero-title" id="heroTitle">Свадьба<br>Александра и Татьяны</h1>
+        </section>
+
+        <section class="story-photos-section" id="storyPhotosSection">
+            <div class="container">
+                <div class="photo-card fade-in" id="groomPhoto">
+                    <div class="photo-frame vintage">
+                        <img src="photo/sanya.jpg" alt="Жених в детстве" class="vintage-photo">
+                        <!-- GROOM_CHILD_PHOTO -->
+                    </div>
+                    <p class="photo-caption">Этот мальчик</p>
+                </div>
+
+                <div class="and_between">
+                    <span class="and-text">и</span>
+                </div>
+
+                <div class="photo-card fade-in" id="bridePhoto">
+                    <div class="photo-frame vintage">
+                        <img src="photo/tanya.jpg" alt="Невеста в детстве" class="vintage-photo">
+                        <!-- BRIDE_CHILD_PHOTO -->
+                    </div>
+                    <p class="photo-caption">Эта девочка</p>
+                </div>
+
+                <div class="photo-card fade-in" id="couplePhoto">
+                    <div class="photo-frame modern">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80" alt="Пара" class="modern-photo">
+                        <!-- ADULT_COUPLE_PHOTO -->
+                    </div>
+                    <p class="photo-caption accent">Решили вырасти и начать свою совместную жизнь вместе!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="love-story-section" id="loveStorySection">
+            <div class="container">
+                <h2 class="story-title fade-in">Наша история</h2>
+                <div class="story-text fade-in" id="loveStoryText">
+                    <!-- LOVE_STORY_TEXT -->
+                    <p class="story-intro">Узнали нас?</p>
+                    <p>Да, это действительно мы — те самые дети с этих фотографий, которые выросли, нашли друг друга и решили соединить свои судьбы!</p>
+                    <p>Посмотрите: вот мы совсем малыши — полные мечтаний и веры в чудеса. Каждый жил в своём маленьком мире, не зная, что где‑то растёт человек, который однажды станет самым близким.</p>
+                    <p class="story-date">Наша история началась <span>27.10.2023</span></p>
+                    <p>Сначала были встречи, тёплые беседы, а затем пришло осознание: рядом — тот, с кем хочется разделить всё — радости, тревоги, мечты о будущем.</p>
+                    <p class="story-outro">Теперь мы с трепетом приглашаем вас разделить с нами день, когда мы станем семьёй!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="invitation-section" id="invitationSection">
+            <div class="container">
+                <p class="invitation-text" id="invitationText1">Дорогие близкие и родные!</p>
+                <p class="invitation-text" id="invitationText3">Мы рады пригласить вас разделить с нами этот счастливый момент!</p>
+
+                <div class="calendar" id="calendar">
+                    <h2 class="calendar-month">Сентябрь 2026</h2>
+                    <div class="calendar-grid">
+                        <span class="calendar-day-header">Пн</span>
+                        <span class="calendar-day-header">Вт</span>
+                        <span class="calendar-day-header">Ср</span>
+                        <span class="calendar-day-header">Чт</span>
+                        <span class="calendar-day-header">Пт</span>
+                        <span class="calendar-day-header">Сб</span>
+                        <span class="calendar-day-header">Вс</span>
+                        <span class="calendar-day empty"></span>
+                        <span class="calendar-day">1</span>
+                        <span class="calendar-day">2</span>
+                        <span class="calendar-day">3</span>
+                        <span class="calendar-day">4</span>
+                        <span class="calendar-day">5</span>
+                        <span class="calendar-day">6</span>
+                        <span class="calendar-day">7</span>
+                        <span class="calendar-day">8</span>
+                        <span class="calendar-day">9</span>
+                        <span class="calendar-day">10</span>
+                        <span class="calendar-day">11</span>
+                        <span class="calendar-day">12</span>
+                        <span class="calendar-day">13</span>
+                        <span class="calendar-day">14</span>
+                        <span class="calendar-day">15</span>
+                        <span class="calendar-day">16</span>
+                        <span class="calendar-day">17</span>
+                        <span class="calendar-day">18</span>
+                        <span class="calendar-day">19</span>
+                        <span class="calendar-day">20</span>
+                        <span class="calendar-day">21</span>
+                        <span class="calendar-day">22</span>
+                        <span class="calendar-day">23</span>
+                        <span class="calendar-day">24</span>
+                        <span class="calendar-day">25</span>
+                        <span class="calendar-day wedding-day">26</span>
+                        <span class="calendar-day">27</span>
+                        <span class="calendar-day">28</span>
+                        <span class="calendar-day">29</span>
+                        <span class="calendar-day">30</span>
+                    </div>
+                </div>
+                <p class="countdown-text" id="countdownText">Ваше присутствие и поддержка будут для нас бесценны!</p>
+
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Дни</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Часы</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Минуты</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Секунды</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="venue-section" id="venueSection">
+            <div class="container">
+                <h2 class="venue-title fade-in">Место проведения</h2>
+                <div class="venue-divider"></div>
+                <div class="venue-address fade-in" id="venueAddress">
+                    <!-- VENUE_ADDRESS -->
+                    <p class="venue-city">Оренбург</p>
+                    <p class="venue-street">ул. 60 лет Октября, д. 19</p>
+                    <p class="venue-hall">Банкетный зал "Solo Legend"</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="survey-section" id="surveySection">
+            <div class="container">
+                <h2 class="survey-title fade-in">Анкета гостя</h2>
+                <form class="survey-form fade-in" id="surveyForm">
+                    <div class="survey-field">
+                        <p class="survey-question">Придёте ли вы на нашу свадьбу?</p>
+                        <div class="survey-options">
+                            <label class="survey-option">
+                                <input type="radio" name="attendance" value="yes">
+                                <span class="survey-option-custom"></span>
+                                <span class="survey-option-text">Да, с радостью!</span>
+                            </label>
+                            <label class="survey-option">
+                                <input type="radio" name="attendance" value="no">
+                                <span class="survey-option-custom"></span>
+                                <span class="survey-option-text">К сожалению, не смогу</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="survey-field">
+                        <label class="survey-label" for="guestName">Ваше имя?</label>
+                        <input type="text" class="survey-input" id="guestName" name="guestName" placeholder="Введите ваше имя" required>
+                    </div>
+
+                    <div class="survey-field">
+                        <p class="survey-question">Какой алкоголь вы предпочитаете?</p>
+                        <div class="survey-options">
+                            <label class="survey-option">
+                                <input type="radio" name="alcohol" value="vodka">
+                                <span class="survey-option-custom"></span>
+                                <span class="survey-option-text">Водка</span>
+                            </label>
+                            <label class="survey-option">
+                                <input type="radio" name="alcohol" value="wine">
+                                <span class="survey-option-custom"></span>
+                                <span class="survey-option-text">Вино</span>
+                            </label>
+                            <label class="survey-option">
+                                <input type="radio" name="alcohol" value="champagne">
+                                <span class="survey-option-custom"></span>
+                                <span class="survey-option-text">Шампанское</span>
+                            </label>
+                            <label class="survey-option">
+                                <input type="radio" name="alcohol" value="whiskey">
+                                <span class="survey-option-custom"></span>
+                                <span class="survey-option-text">Виски</span>
+                            </label>
+                            <label class="survey-option">
+                                <input type="radio" name="alcohol" value="cognac">
+                                <span class="survey-option-custom"></span>
+                                <span class="survey-option-text">Коньяк</span>
+                            </label>
+                            <label class="survey-option">
+                                <input type="radio" name="alcohol" value="tequila">
+                                <span class="survey-option-custom"></span>
+                                <span class="survey-option-text">Текила</span>
+                            </label>
+                            <label class="survey-option">
+                                <input type="radio" name="alcohol" value="samogon">
+                                <span class="survey-option-custom"></span>
+                                <span class="survey-option-text">Самогон</span>
+                            </label>
+                            <label class="survey-option">
+                                <input type="radio" name="alcohol" value="none">
+                                <span class="survey-option-custom"></span>
+                                <span class="survey-option-text">Не буду пить алкоголь</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="survey-btn">Отправить</button>
+                </form>
+                <p class="survey-message" id="surveyMessage">Спасибо за ваш ответ!</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>С любовью, Александр и Татьяна</p>
+            <p class="footer-date">26 сентября 2026</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
