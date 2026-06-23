@@ -44,6 +44,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    const scrollHint = document.getElementById('scrollHint');
+    let scrollHintHidden = false;
+
+    function hideScrollHint() {
+        if (!scrollHintHidden && scrollHint) {
+            scrollHintHidden = true;
+            scrollHint.classList.add('hidden');
+        }
+    }
+
+    document.addEventListener('scroll', hideScrollHint, { once: true });
+    document.addEventListener('touchmove', hideScrollHint, { once: true });
+    document.addEventListener('wheel', hideScrollHint, { once: true });
+
     const weddingDate = new Date('September 26, 2026 15:00:00').getTime();
 
     function updateCountdown() {
