@@ -28,6 +28,24 @@
         </div>
     </div>
 
+    <div class="music-player" id="musicPlayer">
+        <button class="music-btn" id="musicBtn" title="Включить музыку">
+            <svg class="music-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+            <svg class="music-icon pause" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+        </button>
+        <span class="music-label">Фоновая музыка</span>
+        <div class="music-volume">
+            <input type="range" id="volumeSlider" min="0" max="100" value="50">
+        </div>
+        <audio id="bgMusic" loop preload="auto">
+            <source src="https://cdn.pixabay.com/audio/2024/11/01/audio_4956b4ece1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
     <main class="main-content" id="mainContent">
         <section class="hero-section">
             <div class="hero-photo-container">
@@ -220,19 +238,9 @@
                                 <span class="survey-option-text">Шампанское</span>
                             </label>
                             <label class="survey-option">
-                                <input type="radio" name="alcohol" value="whiskey">
-                                <span class="survey-option-custom"></span>
-                                <span class="survey-option-text">Виски</span>
-                            </label>
-                            <label class="survey-option">
                                 <input type="radio" name="alcohol" value="cognac">
                                 <span class="survey-option-custom"></span>
                                 <span class="survey-option-text">Коньяк</span>
-                            </label>
-                            <label class="survey-option">
-                                <input type="radio" name="alcohol" value="tequila">
-                                <span class="survey-option-custom"></span>
-                                <span class="survey-option-text">Текила</span>
                             </label>
                             <label class="survey-option">
                                 <input type="radio" name="alcohol" value="samogon">

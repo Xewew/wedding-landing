@@ -58,6 +58,59 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('touchmove', hideScrollHint, { once: true });
     document.addEventListener('wheel', hideScrollHint, { once: true });
 
+    const musicPlayer = document.getElementById('musicPlayer');
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const volumeSlider = document.getElementById('volumeSlider');
+
+    let musicStarted = false;
+
+    function showMusicPlayer() {
+        if (musicPlayer) {
+            setTimeout(() => {
+                musicPlayer.classList.add('visible');
+            }, 800);
+        }
+    }
+
+    function toggleMusic() {
+        if (!musicStarted) {
+            bgMusic.play().then(() => {
+                musicStarted = true;
+                musicBtn.classList.add('playing');
+            }).catch(() => {
+                console.log('Autoplay blocked');
+            });
+        } else {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicBtn.classList.add('playing');
+            } else {
+                bgMusic.pause();
+                musicBtn.classList.remove('playing');
+            }
+        }
+    }
+
+    function updateVolume() {
+        bgMusic.volume = volumeSlider.value / 100;
+    }
+
+    if (musicBtn) {
+        musicBtn.addEventListener('click', toggleMusic);
+    }
+
+    if (volumeSlider) {
+        volumeSlider.addEventListener('input', updateVolume);
+        bgMusic.volume = 0.5;
+    }
+
+    const originalClosePopup = closePopup;
+    closePopup = function() {
+        originalClosePopup();
+        showMusicPlayer();
+    };
+
     const weddingDate = new Date('September 26, 2026 15:00:00').getTime();
 
     function updateCountdown() {
