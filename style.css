@@ -357,6 +357,81 @@ body {
     }
 }
 
+.scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeInHint 0.6s ease 2.5s forwards;
+    z-index: 2;
+}
+
+.scroll-hint.hidden {
+    opacity: 0 !important;
+    transform: translateX(-50%) translateY(15px) !important;
+    pointer-events: none !important;
+    animation: none !important;
+}
+
+.scroll-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.scroll-arrow {
+    color: var(--cream);
+    animation: scrollBounce 1.5s ease-in-out infinite;
+}
+
+.scroll-dot {
+    animation: scrollDot 1.5s ease-in-out infinite;
+}
+
+@keyframes fadeInHint {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes scrollBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+@keyframes scrollDot {
+    0% {
+        cy: 15;
+        opacity: 1;
+    }
+    50% {
+        cy: 30;
+        opacity: 0.5;
+    }
+    100% {
+        cy: 15;
+        opacity: 1;
+    }
+}
+
 .main-content {
     opacity: 0;
     transition: opacity 0.8s ease 0.3s;
