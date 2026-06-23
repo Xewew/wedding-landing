@@ -78,8 +78,10 @@ document.addEventListener('DOMContentLoaded', function() {
             bgMusic.play().then(() => {
                 musicStarted = true;
                 musicBtn.classList.add('playing');
-            }).catch(() => {
-                console.log('Autoplay blocked');
+            }).catch((err) => {
+                console.log('Playback error:', err);
+                musicBtn.style.opacity = '0.5';
+                musicBtn.title = 'Ошибка загрузки музыки';
             });
         } else {
             if (bgMusic.paused) {
