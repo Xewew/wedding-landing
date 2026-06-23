@@ -757,6 +757,25 @@ body {
     color: var(--burgundy);
 }
 
+.story-photo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    font-style: italic;
+    color: var(--burgundy);
+    text-align: center;
+    max-width: 450px;
+    margin: 30px auto 40px;
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.story-photo-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .story-photos-inline .photo-caption.accent {
     color: var(--burgundy);
     font-weight: 600;
