@@ -29,89 +29,40 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             initScrollAnimations();
         }, 600);
+
+        showMusicPlayer();
+        initMusicPlayer();
     }
 
-    welcomeScreen.addEventListener('click', dismissWelcome);
-    welcomeScreen.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        dismissWelcome();
-    });
-
-    popupBtn.addEventListener('click', closePopup);
-    popupOverlay.addEventListener('click', function(e) {
-        if (e.target === popupOverlay) {
-            closePopup();
+    function initMusicPlayer() {
+        if (musicBtn) {
+            musicBtn.addEventListener('click', toggleMusic);
         }
-    });
-
-    const scrollHint = document.getElementById('scrollHint');
-    let scrollHintHidden = false;
-
-    function hideScrollHint() {
-        if (!scrollHintHidden && scrollHint) {
-            scrollHintHidden = true;
-            scrollHint.classList.add('hidden');
-        }
-    }
-
-    document.addEventListener('scroll', hideScrollHint, { once: true });
-    document.addEventListener('touchmove', hideScrollHint, { once: true });
-    document.addEventListener('wheel', hideScrollHint, { once: true });
-
-    const musicPlayer = document.getElementById('musicPlayer');
-    const musicBtn = document.getElementById('musicBtn');
-    const bgMusic = document.getElementById('bgMusic');
-    const volumeSlider = document.getElementById('volumeSlider');
-
-    let musicStarted = false;
-
-    function showMusicPlayer() {
-        if (musicPlayer) {
-            setTimeout(() => {
-                musicPlayer.classList.add('visible');
-            }, 800);
+        if (volumeSlider) {
+            volumeSlider.addEventListener('input', updateVolume);
+            bgMusic.volume = 0.5;
         }
     }
 
     function toggleMusic() {
-        if (!musicStarted) {
+        if (bgMusic.paused) {
             bgMusic.play().then(() => {
-                musicStarted = true;
                 musicBtn.classList.add('playing');
             }).catch((err) => {
                 console.log('Playback error:', err);
                 musicBtn.style.opacity = '0.5';
-                musicBtn.title = 'Ошибка загрузки музыки';
             });
         } else {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                musicBtn.classList.add('playing');
-            } else {
-                bgMusic.pause();
-                musicBtn.classList.remove('playing');
-            }
+            bgMusic.pause();
+            musicBtn.classList.remove('playing');
         }
     }
 
     function updateVolume() {
-        bgMusic.volume = volumeSlider.value / 100;
+        if (volumeSlider && bgMusic) {
+            bgMusic.volume = volumeSlider.value / 100;
+        }
     }
-
-    if (musicBtn) {
-        musicBtn.addEventListener('click', toggleMusic);
-    }
-
-    if (volumeSlider) {
-        volumeSlider.addEventListener('input', updateVolume);
-        bgMusic.volume = 0.5;
-    }
-
-    const originalClosePopup = closePopup;
-    closePopup = function() {
-        originalClosePopup();
-        showMusicPlayer();
-    };
 
     const weddingDate = new Date('September 26, 2026 15:00:00').getTime();
 
