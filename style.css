@@ -857,6 +857,33 @@ body {
     transform: translateY(0);
 }
 
+.story-photos-inline .photo-frame.modern {
+    padding: 15px;
+    background: linear-gradient(135deg, #f5f0e6 0%, #e8e0d0 50%, #f0e8d8 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+}
+
+.story-photos-inline .photo-frame.modern::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px solid rgba(107, 45, 62, 0.15);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.story-photos-inline .modern-photo {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 3px;
+}
+
 .photo-frame {
     position: relative;
     display: inline-block;
