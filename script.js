@@ -14,26 +14,56 @@ document.addEventListener('DOMContentLoaded', function() {
     function dismissWelcome() {
         if (welcomeDismissed) return;
         welcomeDismissed = true;
-        console.log('Welcome dismissed, showing popup...');
 
         welcomeScreen.classList.add('hidden');
 
-        setTimeout(() => {
-            console.log('Popup should be visible now');
+        setTimeout(function() {
             popupOverlay.classList.add('visible');
-            console.log('Popup overlay classes:', popupOverlay.className);
         }, 500);
     }
 
-    welcomeScreen.addEventListener('click', function(e) {
-        console.log('Welcome screen clicked!', e.target);
-        dismissWelcome();
-    });
-    welcomeScreen.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        console.log('Welcome screen touched!');
-        dismissWelcome();
-    });
+    function closePopup() {
+        popupOverlay.classList.remove('visible');
+        mainContent.classList.add('visible');
+
+        setTimeout(function() {
+            heroTitle.style.animation = 'heroTitleAppear 2s ease forwards';
+        }, 300);
+
+        setTimeout(function() {
+            initScrollAnimations();
+        }, 600);
+
+        showMusicPlayer();
+        initMusicPlayer();
+    }
+
+    function showMusicPlayer() {
+        if (musicPlayer) {
+            setTimeout(function() {
+                musicPlayer.classList.add('visible');
+            }, 800);
+        }
+    }
+
+    function initMusicPlayer() {
+        if (musicBtn) {
+            musicBtn.addEventListener('click', toggleMusic);
+        }
+        if (volumeSlider) {
+            volumeSlider.addEventListener('input', updateVolume);
+            bgMusic.volume = 0.5;
+        }
+    }
+
+    function toggleMusic() {
+        if (bgMusic.paused) {
+            bgMusic.play().then(function() {
+                musicBtn.classList.add('playing');
+            }).catch(function(err) {
+                console.log('Playback error:', err);
+                musicBtn.style.opacity = '0.5';
+            });
         } else {
             bgMusic.pause();
             musicBtn.classList.remove('playing');
@@ -46,17 +76,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    const weddingDate = new Date('September 26, 2026 15:00:00').getTime();
+    welcomeScreen.addEventListener('click', function() {
+        dismissWelcome();
+    });
+    welcomeScreen.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        dismissWelcome();
+    });
+
+    if (popupBtn) {
+        popupBtn.addEventListener('click', closePopup);
+    }
+    if (popupOverlay) {
+        popupOverlay.addEventListener('click', function(e) {
+            if (e.target === popupOverlay) {
+                closePopup();
+            }
+        });
+    }
+
+    var weddingDate = new Date('September 26, 2026 15:00:00').getTime();
 
     function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
+        var now = new Date().getTime();
+        var distance = weddingDate - now;
 
         if (distance > 0) {
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             document.getElementById('days').textContent = String(days).padStart(2, '0');
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
@@ -74,16 +123,16 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(updateCountdown, 1000);
 
     function initScrollAnimations() {
-        const observerOptions = {
+        var observerOptions = {
             root: null,
             rootMargin: '0px',
             threshold: 0.1
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
-                    const target = entry.target;
+                    var target = entry.target;
 
                     if (target.id === 'invitationSection') {
                         animateInvitationSection();
@@ -96,48 +145,48 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, observerOptions);
 
-        const invitationSection = document.getElementById('invitationSection');
-        const fadeElements = document.querySelectorAll('.fade-in');
+        var invitationSection = document.getElementById('invitationSection');
+        var fadeElements = document.querySelectorAll('.fade-in');
 
         if (invitationSection) observer.observe(invitationSection);
-        fadeElements.forEach(el => observer.observe(el));
+        fadeElements.forEach(function(el) { observer.observe(el); });
     }
 
     function animateInvitationSection() {
-        const text1 = document.getElementById('invitationText1');
-        const text2 = document.getElementById('invitationText2');
-        const text3 = document.getElementById('invitationText3');
-        const calendar = document.getElementById('calendar');
-        const countdownText = document.getElementById('countdownText');
-        const countdown = document.getElementById('countdown');
+        var text1 = document.getElementById('invitationText1');
+        var text2 = document.getElementById('invitationText2');
+        var text3 = document.getElementById('invitationText3');
+        var calendar = document.getElementById('calendar');
+        var countdownText = document.getElementById('countdownText');
+        var countdown = document.getElementById('countdown');
 
         if (text1) text1.classList.add('visible');
 
-        setTimeout(() => {
+        setTimeout(function() {
             if (text2) text2.classList.add('visible');
         }, 1000);
 
-        setTimeout(() => {
+        setTimeout(function() {
             if (text3) text3.classList.add('visible');
         }, 2000);
 
-        setTimeout(() => {
+        setTimeout(function() {
             if (calendar) calendar.classList.add('visible');
         }, 2500);
 
-        setTimeout(() => {
+        setTimeout(function() {
             if (countdownText) countdownText.classList.add('visible');
         }, 3500);
 
-        setTimeout(() => {
+        setTimeout(function() {
             if (countdown) countdown.classList.add('visible');
         }, 4000);
     }
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            var target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
@@ -147,41 +196,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const BOT_TOKEN = '8868304668:AAE0ajl3mM5KdRZfYGAJWXnHjAUwYOZJJVE';
-    const CHAT_IDS = ['1453758150', '982518689'];
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    var BOT_TOKEN = '8868304668:AAE0ajl3mM5KdRZfYGAJWXnHjAUwYOZJJVE';
+    var CHAT_IDS = ['1453758150', '982518689'];
+    var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
 
-    const surveyForm = document.getElementById('surveyForm');
-    const surveyMessage = document.getElementById('surveyMessage');
-    const surveyBtn = surveyForm ? surveyForm.querySelector('.survey-btn') : null;
+    var surveyForm = document.getElementById('surveyForm');
+    var surveyMessage = document.getElementById('surveyMessage');
+    var surveyBtn = surveyForm ? surveyForm.querySelector('.survey-btn') : null;
 
     if (surveyForm) {
         surveyForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            const name = surveyForm.querySelector('#guestName').value.trim();
-            const attendance = surveyForm.querySelector('input[name="attendance"]:checked');
-            const alcohol = surveyForm.querySelector('input[name="alcohol"]:checked');
+            var name = surveyForm.querySelector('#guestName').value.trim();
+            var attendance = surveyForm.querySelector('input[name="attendance"]:checked');
+            var alcohol = surveyForm.querySelector('input[name="alcohol"]:checked');
 
             if (name && attendance && alcohol) {
                 if (surveyBtn) {
                     surveyBtn.disabled = true;
                     surveyBtn.textContent = 'Отправка...';
                 }
-
-                const attendanceText = attendance.value === 'yes' ? 'Да, придёт' : 'Нет, не сможет';
-                const alcoholNames = {
-                    'vodka': 'Водка',
-                    'wine': 'Вино',
-                    'champagne': 'Шампанское',
-                    'whiskey': 'Виски',
-                    'cognac': 'Коньяк',
-                    'tequila': 'Текила',
-                    'samogon': 'Самогон',
-                    'none': 'Не будет пить'
-                };
-                const alcoholText = alcoholNames[alcohol.value] || alcohol.value;
-
-                const message = `💒 Новый ответ на анкету\n\n👤 Имя: ${name}\n📅 Присутствие: ${attendanceText}\n🍷 Алкоголь: ${alcoholText}`;
 
                 try {
                     await fetch(GOOGLE_SCRIPT_URL, {
@@ -197,21 +231,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         })
                     });
 
-                    const sendPromises = CHAT_IDS.map(chatId =>
-                        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    var sendPromises = CHAT_IDS.map(function(chatId) {
+                        return fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
                                 chat_id: chatId,
-                                text: message
+                                text: '💒 Новый ответ на анкеты\n\n👤 Имя: ' + name + '\n📅 Присутствие: ' + (attendance.value === 'yes' ? 'Да, придёт' : 'Нет, не сможет') + '\n🍷 Алкоголь: ' + getAlcoholName(alcohol.value)
                             })
-                        })
-                    );
+                        });
+                    });
 
-                    const results = await Promise.all(sendPromises);
-                    const allOk = results.every(r => r.ok);
+                    var results = await Promise.all(sendPromises);
+                    var allOk = results.every(function(r) { return r.ok; });
 
                     if (allOk) {
                         surveyForm.style.display = 'none';
@@ -231,7 +265,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    let resizeTimeout;
+    function getAlcoholName(value) {
+        var names = {
+            'vodka': 'Водка',
+            'wine': 'Вино',
+            'champagne': 'Шампанское',
+            'whiskey': 'Виски',
+            'cognac': 'Коньяк',
+            'tequila': 'Текила',
+            'samogon': 'Самогон',
+            'none': 'Не будет пить'
+        };
+        return names[value] || value;
+    }
+
+    var resizeTimeout;
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function() {
