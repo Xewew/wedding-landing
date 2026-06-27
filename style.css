@@ -951,11 +951,12 @@ body {
     overflow: hidden;
 }
 
-.modern-photo {
+.story-photos-inline .modern-photo {
     display: block;
     width: 100%;
-    max-width: 450px;
+    max-width: 350px;
     height: auto;
+    border-radius: 3px;
 }
 
 .story-photos-inline {
