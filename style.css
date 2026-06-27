@@ -248,20 +248,20 @@ body {
     transform: scale(0.95);
 }
 
-.music-icon {
-    display: none;
+.music-icon.play {
+    display: block;
 }
 
 .music-icon.pause {
-    display: block;
+    display: none;
 }
 
 .music-btn.playing .music-icon.play {
-    display: block;
+    display: none;
 }
 
 .music-btn.playing .music-icon.pause {
-    display: none;
+    display: block;
 }
 
 .music-label {
