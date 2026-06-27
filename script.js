@@ -36,6 +36,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         showMusicPlayer();
         initMusicPlayer();
+        startMusic();
+    }
+
+    function startMusic() {
+        if (bgMusic) {
+            bgMusic.play().then(function() {
+                if (musicBtn) {
+                    musicBtn.classList.add('playing');
+                }
+            }).catch(function(err) {
+                console.log('Autoplay blocked:', err);
+            });
+        }
     }
 
     function showMusicPlayer() {
