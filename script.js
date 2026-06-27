@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroTitle = document.getElementById('heroTitle');
     const popupOverlay = document.getElementById('popupOverlay');
     const popupBtn = document.getElementById('popupBtn');
+    const musicPlayer = document.getElementById('musicPlayer');
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const volumeSlider = document.getElementById('volumeSlider');
 
     let welcomeDismissed = false;
 
