@@ -14,48 +14,26 @@ document.addEventListener('DOMContentLoaded', function() {
     function dismissWelcome() {
         if (welcomeDismissed) return;
         welcomeDismissed = true;
+        console.log('Welcome dismissed, showing popup...');
 
         welcomeScreen.classList.add('hidden');
 
         setTimeout(() => {
+            console.log('Popup should be visible now');
             popupOverlay.classList.add('visible');
+            console.log('Popup overlay classes:', popupOverlay.className);
         }, 500);
     }
 
-    function closePopup() {
-        popupOverlay.classList.remove('visible');
-        mainContent.classList.add('visible');
-
-        setTimeout(() => {
-            heroTitle.style.animation = 'heroTitleAppear 2s ease forwards';
-        }, 300);
-
-        setTimeout(() => {
-            initScrollAnimations();
-        }, 600);
-
-        showMusicPlayer();
-        initMusicPlayer();
-    }
-
-    function initMusicPlayer() {
-        if (musicBtn) {
-            musicBtn.addEventListener('click', toggleMusic);
-        }
-        if (volumeSlider) {
-            volumeSlider.addEventListener('input', updateVolume);
-            bgMusic.volume = 0.5;
-        }
-    }
-
-    function toggleMusic() {
-        if (bgMusic.paused) {
-            bgMusic.play().then(() => {
-                musicBtn.classList.add('playing');
-            }).catch((err) => {
-                console.log('Playback error:', err);
-                musicBtn.style.opacity = '0.5';
-            });
+    welcomeScreen.addEventListener('click', function(e) {
+        console.log('Welcome screen clicked!', e.target);
+        dismissWelcome();
+    });
+    welcomeScreen.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        console.log('Welcome screen touched!');
+        dismissWelcome();
+    });
         } else {
             bgMusic.pause();
             musicBtn.classList.remove('playing');
